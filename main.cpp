@@ -5,6 +5,17 @@
 
 using namespace std;
 
+class MyEngine
+{
+public:
+	void Tick();
+	void Input();
+	void Render();
+
+	vector<class Actor*> ActorList;
+};
+
+
 int main()
 {
 	vector<int> Data;
