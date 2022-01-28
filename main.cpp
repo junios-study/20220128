@@ -27,6 +27,8 @@ int main()
 	//	}
 	//}
 
+	Data.clear();
+
 	for (auto iter = Data.begin(); iter != Data.end(); ++iter)
 	{
 		if ((*iter % 10) % 3 == 0)
