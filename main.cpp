@@ -2,99 +2,35 @@
 #include <vector>
 
 using namespace std;
-
-class AActor
+ 
+template<typename T>
+T Add(T A, T B)
 {
-public:
-	AActor()
-	{
-		cout << "Actor Consturctor" << endl;
-	}
-	virtual ~AActor()
-	{
-		cout << "Actor Destructor" << endl;
-	}
+	return A + B;
+}
 
-	virtual void Tick()
-	{
-		cout << "Actor Tick();" << endl;
-	}
-
-	int Gold = 10;
-};
-
-class ACubeActor : public AActor
+template<typename T, typename Y>
+T Add(T A, Y B)
 {
-public:
-	ACubeActor()
-	{
-		cout << "Child Consturctor" << endl;
-	}
-	virtual ~ACubeActor()
-	{
-		cout << "Cube Destructor" << endl;
-	}
+	return A + (T)B;
+}
 
-	virtual void Tick() override
-	{
-		cout << "Cube Tick();" << endl;
-	}
-};
-
-class AFloor : public ACubeActor
+template<typename T1, typename T2, typename T3>
+T1 Add(T1 A, T2 B, T3 C)
 {
-public:
-	AFloor()
-	{
-		cout << "Floor Consturctor" << endl;
-	}
-	virtual ~AFloor()
-	{
-		cout << "Floor Destructor" << endl;
-	}
+	return A + B + C;
+}
 
-	virtual void Tick() override
-	{
-		cout << "Floor Tick();" << endl;
-	}
-};
-
-class MyEngine
-{
-public:
-	MyEngine() {}
-	virtual ~MyEngine() {}
-
-	void SpawnActor(AActor* MakeActor)
-	{
-		ActorList.push_back(MakeActor);
-	}
-
-	void DestroyActor(AActor* DestroyedActor)
-	{
-		//for (auto iter = ActorList.begin(); iter != ActorList.end(); ++iter)
-		//{
-		//	if (*iter == DestroyedActor)
-		//	{
-		//		iter = ActorList.erase(iter);
-		//	}
-		//}
-
-		ActorList.erase(find(ActorList.begin(), ActorList.end(), DestroyedActor));
-	}
-
-private:
-	vector<AActor*> ActorList;
-};
 
 int main()
 {
-	AActor* object = new AFloor();
+	//cout << Add<int>(2, 3) << endl;
 
-	object->Tick();
+	//cout << Add<float>(2.5f, 3.0f) << endl;
 
-	delete object;
-	object = nullptr;
+	//cout << Add<float, int>(2.5f, 3) << endl;
+
+	cout << Add<float, int, float>(2.5f, 3, 3.0f) << endl;
 
 	return 0;
 }
